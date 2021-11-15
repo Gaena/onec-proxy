@@ -1,6 +1,6 @@
 package com.dnk.onecproxy.service;
 
-import com.dnk.onecproxy.utils.Sockets;
+import com.dnk.onecproxy.utils.SocketClient;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -8,14 +8,15 @@ import java.io.IOException;
 @Service
 public class OneCService {
 
-    private final Sockets sockets;
+    private final SocketClient socketClient;
 
-    public OneCService(Sockets sockets) {
-        this.sockets = sockets;
+    public OneCService(SocketClient socketClient) {
+        this.socketClient = socketClient;
     }
 
     public String processRequest(String request) throws IOException {
         System.out.println("Incoming request : " + request);
-        return sockets.sendRequest(request);
+        socketClient.startConnection();
+        return socketClient.sendMessage(request);
     }
 }
