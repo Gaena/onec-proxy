@@ -16,7 +16,6 @@ public class OneCService {
 
     public String processRequest(String request) throws IOException {
         System.out.println("Incoming request : " + request);
-        socketClient.startConnection();
         return socketClient.sendMessage(request);
     }
 }
